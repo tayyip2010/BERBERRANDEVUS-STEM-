@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Randevu Sistemi</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-color: #eef2f3;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            background-color: #34495e;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        article {
+            flex: 3;
+            background: white;
+            padding: 20px;
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        aside {
+            flex: 1;
+            background: #dfe6e9;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #219150;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .randevu {
+            background: #ecf0f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Randevu Sistemi</h1>
+    <p>Kolay ve hızlı randevu al</p>
+</header>
+
+<nav>
+    <a href="#">Ana Sayfa</a>
+    <a href="#">Randevu Al</a>
+    <a href="#">İletişim</a>
+</nav>
+
+<div class="container">
+
+    <article>
+        <h2>Randevu Oluştur</h2>
+
+        <input type="text" id="ad" placeholder="Adınız">
+        <input type="date" id="tarih">
+        <input type="time" id="saat">
+
+        <select id="hizmet">
+            <option>Saç Kesimi</option>
+            <option>Sakal Tıraşı</option>
+            <option>Cilt Bakımı</option>
+        </select>
+
+        <button onclick="randevuEkle()">Randevu Al</button>
+
+        <h3>Randevular</h3>
+        <div id="liste"></div>
+    </article>
+
+    <aside>
+        <h3>Bilgi</h3>
+        <p>✔ Online randevu sistemi</p>
+        <p>✔ Hızlı işlem</p>
+        <p>✔ Kolay kullanım</p>
+
+        <h3>Video</h3>
+        <video width="100%" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+    </aside>
+
+</div>
+
+<footer>
+    <p>© 2026 Randevu Sistemi</p>
+</footer>
+
+<script>
+function randevuEkle() {
+    let ad = document.getElementById("ad").value;
+    let tarih = document.getElementById("tarih").value;
+    let saat = document.getElementById("saat").value;
+    let hizmet = document.getElementById("hizmet").value;
+
+    if(ad === "" || tarih === "" || saat === "") {
+        alert("Lütfen tüm alanları doldurun!");
+        return;
+    }
+
+    let liste = document.getElementById("liste");
+
+    let yeni = document.createElement("div");
+    yeni.className = "randevu";
+
+    yeni.innerHTML = `
+        <b>${ad}</b><br>
+        ${tarih} - ${saat}<br>
+        Hizmet: ${hizmet}
+    `;
+
+    liste.appendChild(yeni);
+
+    // inputları temizle
+    document.getElementById("ad").value = "";
+    document.getElementById("tarih").value = "";
+    document.getElementById("saat").value = "";
+}
+</script>
+
+</body>
+</html>
